@@ -1,3 +1,4 @@
+#define callbackFunction int (*callback)(void*,  int,  char**,   char**  )
 sqlite3 *db ;//database object
 
 // query answer data's 
