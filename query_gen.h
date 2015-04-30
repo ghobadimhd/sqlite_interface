@@ -1,7 +1,7 @@
 /*
 this is function for generating a query for making a table .
 */
-char* tableQueryGen(char[] tableName,int numberOfColumns , char **columnsName , char **columnsType , int isNull[] )
+char* tableQueryGen(char tableName[],int numberOfColumns , char **columnsName , char **columnsType , int isNull[] )
 {
 	char sql[500] = "create table ";
 	strcat(sql,tableName);
@@ -25,4 +25,15 @@ char* listTablesQuery()
 {
 	char sql[] = "select name from sqlite_master where type == 'table'";
 	return sql ;
+}
+/*
+this is function for showing table info .
+*/
+char* tableInfoQuery(char *tableName)
+{
+	char sql[50] = "pragma table_info(";
+	strcat(sql , tableName);
+	strcat (sql , ");");
+	
+	return sql;
 }
