@@ -15,3 +15,39 @@ int connectToDb()
 		return 0 ;
 	}
 }
+/*
+this is function for showin main menu of program .
+*/
+void mainMenu()
+{
+	int choice = -1;
+	while(choice != 0)
+	{
+		switch()
+		{
+			case 1:
+				//table_menu();	
+			break;
+			case 2:
+				//insert();
+			break;
+			case 3:
+				//update();
+			break;
+			case 4:
+				//delete();
+			break;
+			case 5:
+				//select();
+			break;
+			default:
+				
+		}
+		
+	printf("what do you want to do :\n1-tables\n2-insert\n3-update\n4-delete\n5-select\n0-exit\n?:");		
+	scanf("%d",&choice);
+	
+		
+		
+	}
+}
