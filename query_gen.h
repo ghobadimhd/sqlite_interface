@@ -18,3 +18,11 @@ char* tableQueryGen(char[] tableName,int numberOfColumns , char **columnsName , 
 	return sql ;
 
 }
+/*
+this is function for creating query for listing existence tables .
+*/
+char* listTablesQuery()
+{
+	char sql[] = "select name from sqlite_master where type == 'table'";
+	return sql ;
+}
