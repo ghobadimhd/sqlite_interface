@@ -14,6 +14,19 @@ int open_db(char *db_name)
 		return 1 ; // dataBase (create and ) opened successfully
 }
 /*
+this is simple callback function .
+*/
+static int simpleCallback(void *data, int argc, char **argv, char **azColName)
+{
+	int i;
+	for(i=0; i<argc; i++)
+	{
+		printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+	}
+	printf("\n");
+	return 0;
+}
+/*
 this is function query to database  .
 */
 int query(char *sql , callbackFunction)
