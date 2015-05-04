@@ -11,8 +11,13 @@ char* tableQueryGen(char tableName[],int numberOfColumns , char **columnsName , 
 		strcat(sql,columnsName[i]);
 		strcat(sql , " ");
 		strcat(sql,columnsType[i]);
+		if(! isNull[i])
+		{
+			strcat(sql , " ");
+			strcat(sql , "NOT NULL ");
 		if(i != numberOfColumns -1 )
 			strcat(sql , ",");
+		}
 	}
 	strcat(sql , " );");
 	return sql ;
