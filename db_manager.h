@@ -1,3 +1,7 @@
+#define callbackFunction int (*callback)(void*,  int,  char**,   char**  )
+sqlite3 *db ;//database object
+char *errorMessage ; // error message returned by sqlite 
+
 /*
 this is function creating date base or connecting to it  .
 */
