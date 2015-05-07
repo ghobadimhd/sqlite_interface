@@ -89,3 +89,26 @@ char* selectQuery(char tableName[] , int numberOfColumns , char **columns)
 	strcat(sql,tableName);
 	return sql ;
 }
+/*
+this is function fot generating update query .
+*/
+char* updateQuery(char tableName[] , int numberOfColumns , char **columns , char **values , char keyColumn[] , char keyValue[])
+{
+	char sql[500]= "update " ;
+	strcat(sql,tableName);
+	strcat(sql," set ");
+	for (int i = 0; i <numberOfColumns; i++) 
+	{
+		strcat(sql,columns[i]);
+		strcat(sql,"=");
+		strcat(sql,values[i]);	
+		if ( i != numberOfColumns-1 )
+			strcat(sql,",");
+	}
+	strcat(sql," where ");
+	strcat(sql,keyColumn);
+	strcat(sql,"=");
+	strcat(sql,keyValue);
+
+	return sql;
+}
