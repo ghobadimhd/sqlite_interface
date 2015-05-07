@@ -112,3 +112,17 @@ char* updateQuery(char tableName[] , int numberOfColumns , char **columns , char
 
 	return sql;
 }
+/*
+this is function for generating delete query string .
+*/
+char* deleteQuery(char tableName[] , char keyColumn[] , char keyValue)
+{
+	char sql[100]= "delete from ";
+	strcat(sql,tableName);
+	strcat(sql," where ");
+	strcat(sql,keyColumn);
+	strcat(sql,"=");
+	strcat(sql,keyValue);
+
+	return sql;
+}
