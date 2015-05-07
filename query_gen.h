@@ -42,3 +42,27 @@ char* tableInfoQuery(char *tableName)
 	
 	return sql;
 }
+/*
+this is function for generating sql query for inserting data in table .
+*/
+char* insertQuery(char tableName[] ,int numberOfColumns ,char **columns , char **values )
+{
+	char sql[500]= "insert into " ;
+	strcat(sql,tableName);
+	strcat(sql," (");
+	for (int i = 0; i <numberOfColumns; i++) 
+	{
+		strcat(sql,columns[i]);
+		if ( i != numberOfColumns-1 )
+			strcat(sql,",");
+	}
+	strcat(sql,") values (");
+	for (int i = 0; i <numberOfColumns; i++) 
+	{
+		strcat(sql,values[i]);
+		if ( i != numberOfColumns-1 )
+			strcat(sql,",");
+	}
+	strcat(sql,")");
+	return sql;
+}
