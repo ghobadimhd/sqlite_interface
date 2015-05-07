@@ -66,3 +66,26 @@ char* insertQuery(char tableName[] ,int numberOfColumns ,char **columns , char *
 	strcat(sql,")");
 	return sql;
 }
+/*
+this is function for generating select sql query .
+*/
+char* selectQuery(char tableName[] , int numberOfColumns , char **columns)
+{
+	char sql[500] = "select ";
+	if ( numberOfColumns == 0 )
+		strcat(sql,"*");
+	else
+	{
+		
+		for (int i = 0; i <numberOfColumns; i++) 
+		{
+			strcat(sql,columns[i]);
+			if ( i != numberOfColumns-1 )
+				strcat(sql,",");
+		}
+	}
+	
+	strcat(sql," from ");
+	strcat(sql,tableName);
+	return sql ;
+}
