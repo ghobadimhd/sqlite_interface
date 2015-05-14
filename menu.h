@@ -63,7 +63,7 @@ void innerMenu()
 		switch(choice)
 		{
 			case 1 : // fix me 
-				{
+			{		
 				char *sql ,  tableName[20] , column[10][20] , columnType[10][20]  , isNullAnswer ;
 				int count , isNull[10] ;
 				printf("Please enter table name :");
@@ -83,7 +83,7 @@ void innerMenu()
 				}
 				sql = tableQueryGen(tableName , count , column , columnType , isNull );
 				query(sql , simpleCallback);
-				}
+			}	
 			break ;
 			case 2:
 				//insert();
