@@ -30,7 +30,24 @@ void mainMenu()
 				innerMenu();
 			break;
 			case 2:
-				//insert();
+			{
+				char tableName[20] , columns[10][20] , values[10][20] , *sql ;
+				int count ;
+				printf("Enter table name :");
+				scanf("%s",tableName);
+				printf("how many column your record has ? :");
+				scanf("	%s",&count);
+				for (int i = 0; i <count; i++) 
+				{
+					printf("enter column name :");
+					scanf(" %s",columns[i]);
+					printf("enter column value :");
+					scanf(" %s",values[i]);
+				}
+				sql = insertQuery(tableName , count , columns , values ) ;
+				query(sql , simpleCallback) ;
+
+			}
 			break;
 			case 3:
 				//update();
