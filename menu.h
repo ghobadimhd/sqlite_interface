@@ -50,7 +50,28 @@ void mainMenu()
 			}
 			break;
 			case 3:
-				//update();
+			{	
+				char tableName[20] , columns[10][20] , values[10][20] , keyColumn[20] , keyValue[20] , *sql ;
+				int count ;
+				printf("Enter table name :");
+				scanf("%s",tableName);
+				printf("how many column you want to update ? :");
+				scanf("	%s",&count);
+				for (int i = 0; i <count; i++) 
+				{
+					printf("enter column name :");
+					scanf(" %s",columns[i]);
+					printf("enter column value :");
+					scanf(" %s",values[i]);
+				}
+				printf("enter key column name :");
+				scanf(" %s",keyColumn);
+				printf("enter key column value :");
+				scanf(" %s",keyValue);
+
+				sql = updateQuery(tableName , count , columns , values , keyColumn , keyValue) ;
+				query(sql , simpleCallback) ;
+			}
 			break;
 			case 4:
 				//delete();
