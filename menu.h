@@ -62,9 +62,9 @@ void innerMenu()
 	{
 		switch(choice)
 		{
-			case 1 : // fix me 
+			case 1 :  
 			{		
-				char *sql ,  tableName[20] , column[10][20] , columnType[10][20]  , isNullAnswer ;
+				char *sql ,  tableName[20] , column[10][20] , columnType[10][20]  , isNullAnswer = 0;
 				int count , isNull[10] ;
 				printf("Please enter table name :");
 				scanf("%s",tableName);
@@ -73,11 +73,11 @@ void innerMenu()
 				for (int i = 0; i <count; i++) 
 				{
 					printf("enter name of column #%d:",count);
-					scanf("%s",column[count]);
-					printf("enter type of column #d:",count);
-					scanf("%s",columnType);
+					scanf(" %s",column[count]);
+					printf("enter type of column #%d:",count);
+					scanf(" %s",columnType);
 					printf("is nullable column?");
-					scanf("%c",&isNullAnswer);
+					scanf(" %c",&isNullAnswer); // fix me : segmentation failed 
 					isNull[count] = isNullAnswer == 'y' ? 1 : 0; 
 					printf("\n");
 				}
@@ -86,16 +86,23 @@ void innerMenu()
 			}	
 			break ;
 			case 2:
-				//insert();
+			{
+				char *sql = listTablesQuery() ; 
+				query(sql , simpleCallback) ; 
+			}
 			break;
 			case 3:
-				//update();
+			{
+				char *sql  , tableName[20] ; 
+				printf("Enter the table name : ");
+				scanf("%s",tableName);
+				sql = tableInfoQuery(tableName);
+				query(sql , simpleCallback);
+			}
+
 			break;
-			case 4:
-				//delete();
-			break;
-			case 5:
-				//select();
+			case 0 : 
+				return ;	
 			break;
 			default:
 			break ; 	
