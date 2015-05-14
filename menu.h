@@ -74,7 +74,19 @@ void mainMenu()
 			}
 			break;
 			case 4:
-				//delete();
+			{
+				
+				char tableName[20] , keyColumn[20] , keyValue[20] , *sql ;
+				int count ;
+				printf("Enter table name :");
+				scanf("%s",tableName);
+				printf("enter key column name :");
+				scanf(" %s",keyColumn);
+				printf("enter key column value :");
+				scanf(" %s",keyValue);
+				sql = deleteQuery(tableName , keyColumn , keyValue) ;
+				query(sql , simpleCallback);
+			}
 			break;
 			case 5:
 				//select();
