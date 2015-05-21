@@ -9,7 +9,7 @@ int connectToDb()
 	printf("Please enter name of database you want to connect :");
 	gets(db_name);
 	hasError = open_db(db_name);
-	if ( hasError )
+	if (! hasError )
 	{
 		printf("can not connect to database : %s\n",errorMessage);
 		sqlite3_free(errorMessage);
@@ -31,60 +31,61 @@ void mainMenu()
 			break;
 			case 2:
 			{
-				char tableName[20] , columns[10][20] , values[10][20] , *sql ;
+				// insert query
+				char tableName[20] , columns[10][20] , values[10][20] , sql[500] ;
 				int count ;
 				printf("Enter table name :");
 				scanf("%s",tableName);
 				printf("how many column your record has ? :");
-				scanf("	%s",&count);
+				scanf("	%d",&count);
 				for (int i = 0; i <count; i++) 
 				{
 					printf("enter column name :");
 					scanf(" %s",columns[i]);
-					printf("enter column value :");
+					printf("enter value for %s :",columns[i]);
 					scanf(" %s",values[i]);
 				}
-				sql = insertQuery(tableName , count , columns , values ) ;
+				insertQuery(sql , tableName , count , columns , values ) ;
 				query(sql , simpleCallback) ;
 
 			}
 			break;
 			case 3:
-			{	
-				char tableName[20] , columns[10][20] , values[10][20] , keyColumn[20] , keyValue[20] , *sql ;
+			{
+				// update query 	
+				char tableName[20] , columns[10][20] , values[10][20] , keyColumn[20] , keyValue[20] , sql[500] ;
 				int count ;
 				printf("Enter table name :");
 				scanf("%s",tableName);
 				printf("how many column you want to update ? :");
-				scanf("	%s",&count);
+				scanf("	%d",&count);
 				for (int i = 0; i <count; i++) 
 				{
 					printf("enter column name :");
 					scanf(" %s",columns[i]);
-					printf("enter column value :");
+					printf("enter new value for %s :",columns[i]);
 					scanf(" %s",values[i]);
 				}
 				printf("enter key column name :");
 				scanf(" %s",keyColumn);
-				printf("enter key column value :");
+				printf("enter key value :");
 				scanf(" %s",keyValue);
 
-				sql = updateQuery(tableName , count , columns , values , keyColumn , keyValue) ;
+				updateQuery(sql , tableName , count , columns , values , keyColumn , keyValue) ;
 				query(sql , simpleCallback) ;
 			}
 			break;
 			case 4:
 			{
-				
-				char tableName[20] , keyColumn[20] , keyValue[20] , *sql ;
-				int count ;
+				// delete query 	
+				char tableName[20] , keyColumn[20] , keyValue[20] , sql[500] ;
 				printf("Enter table name :");
 				scanf("%s",tableName);
 				printf("enter key column name :");
 				scanf(" %s",keyColumn);
-				printf("enter key column value :");
+				printf("enter key value :");
 				scanf(" %s",keyValue);
-				sql = deleteQuery(tableName , keyColumn , keyValue) ;
+				deleteQuery(sql , tableName , keyColumn , keyValue) ;
 				query(sql , simpleCallback);
 			}
 			break;
@@ -114,7 +115,7 @@ void innerMenu()
 		{
 			case 1 :  
 			{		
-				char *sql ,  tableName[20] , column[10][20] , columnType[10][20]  , isNullAnswer = 0;
+				char sql[500]="" ,  tableName[20] , column[10][20] , columnType[10][20]  , isNullAnswer = 0;
 				int count , isNull[10] ;
 				printf("Please enter table name :");
 				scanf("%s",tableName);
@@ -122,31 +123,37 @@ void innerMenu()
 				scanf("%d",&count);
 				for (int i = 0; i <count; i++) 
 				{
-					printf("enter name of column #%d:",count);
-					scanf(" %s",column[count]);
-					printf("enter type of column #%d:",count);
-					scanf(" %s",columnType);
-					printf("is nullable column?");
+					printf("enter name of column #%d:",i);
+					scanf(" %s",column[i]);
+					printf("enter type of %s :",column[i]);
+					scanf(" %s",columnType[i]);
+					printf("is it nullable column?");
 					scanf(" %c",&isNullAnswer); // fix me : segmentation failed 
-					isNull[count] = isNullAnswer == 'y' ? 1 : 0; 
+					isNull[i] = isNullAnswer == 'y' ? 1 : 0; 
 					printf("\n");
 				}
-				sql = tableQueryGen(tableName , count , column , columnType , isNull );
-				query(sql , simpleCallback);
+				tableQueryGen(sql ,tableName , count , column , columnType , isNull );
+				int success = query(sql , simpleCallback);
+				if (! success ) 
+					printf("%s\n",errorMessage);
+				else 
+					printf("operation done successfully .\n");
+
 			}	
 			break ;
 			case 2:
 			{
-				char *sql = listTablesQuery() ; 
+				char sql[100] ;
+			       	listTablesQuery(sql) ; 
 				query(sql , simpleCallback) ; 
 			}
 			break;
 			case 3:
 			{
-				char *sql  , tableName[20] ; 
+				char sql[100]  , tableName[20] ; 
 				printf("Enter the table name : ");
 				scanf("%s",tableName);
-				sql = tableInfoQuery(tableName);
+				tableInfoQuery(sql ,tableName);
 				query(sql , simpleCallback);
 			}
 
@@ -158,7 +165,7 @@ void innerMenu()
 			break ; 	
 		}
 		
-	printf("what do you want to do :\n1-create table\n2-show tables \n3-tables info\n0-exit\n?:");		
+	printf("what do you want to do :\n1-create table\n2-show tables \n3-tables info\n0-back\n?:");		
 	scanf("%d",&choice);
 	
 		
