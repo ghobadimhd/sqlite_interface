@@ -1,9 +1,9 @@
 /*
 this is function for generating a query for making a table .
 */
-char* tableQueryGen(char tableName[],int numberOfColumns , char **columnsName , char **columnsType , int isNull[] )
+void tableQueryGen(char sql[] , char tableName[],int numberOfColumns , char columnsName[][20] , char columnsType[][20] , int isNull[] )
 {
-	char sql[500] = "create table ";
+	strcpy(sql,"create table ");
 	strcat(sql,tableName);
 	strcat(sql , " (");
 	for (int i = 0; i <numberOfColumns; i++) 
@@ -13,11 +13,11 @@ char* tableQueryGen(char tableName[],int numberOfColumns , char **columnsName , 
 		strcat(sql,columnsType[i]);
 		if(! isNull[i])
 		{
-			strcat(sql , " ");
-			strcat(sql , "NOT NULL ");
+			strcat(sql , " NOT NULL ");
+		}
 		if(i != numberOfColumns -1 )
 			strcat(sql , ",");
-		}
+		
 	}
 	strcat(sql , " );");
 	return sql ;
@@ -26,17 +26,17 @@ char* tableQueryGen(char tableName[],int numberOfColumns , char **columnsName , 
 /*
 this is function for creating query for listing existence tables .
 */
-char* listTablesQuery()
+void listTablesQuery(char sql[])
 {
-	char sql[] = "select name from sqlite_master where type == 'table'";
+	strcpy(sql, "select * from sqlite_master where type = 'table'");
 	return sql ;
 }
 /*
 this is function for showing table info .
 */
-char* tableInfoQuery(char *tableName)
+void tableInfoQuery(char sql[] , char *tableName)
 {
-	char sql[50] = "pragma table_info(";
+	strcpy(sql , "pragma table_info(");
 	strcat(sql , tableName);
 	strcat (sql , ");");
 	
@@ -45,9 +45,9 @@ char* tableInfoQuery(char *tableName)
 /*
 this is function for generating sql query for inserting data in table .
 */
-char* insertQuery(char tableName[] ,int numberOfColumns ,char **columns , char **values )
+void insertQuery(char sql[] , char tableName[] ,int numberOfColumns ,char columns[][20] , char values[][20] )
 {
-	char sql[500]= "insert into " ;
+	strcpy(sql, "insert into ") ;
 	strcat(sql,tableName);
 	strcat(sql," (");
 	for (int i = 0; i <numberOfColumns; i++) 
@@ -60,7 +60,7 @@ char* insertQuery(char tableName[] ,int numberOfColumns ,char **columns , char *
 	for (int i = 0; i <numberOfColumns; i++) 
 	{
 		strcat(sql,values[i]);
-		if ( i != numberOfColumns-1 )
+	if ( i != numberOfColumns-1 )
 			strcat(sql,",");
 	}
 	strcat(sql,")");
@@ -69,9 +69,9 @@ char* insertQuery(char tableName[] ,int numberOfColumns ,char **columns , char *
 /*
 this is function for generating select sql query .
 */
-char* selectQuery(char tableName[] , int numberOfColumns , char **columns)
+void selectQuery(char sql[] , char tableName[] , int numberOfColumns , char columns[][20])
 {
-	char sql[500] = "select ";
+	strcpy(sql, "select ");
 	if ( numberOfColumns == 0 )
 		strcat(sql,"*");
 	else
@@ -92,9 +92,9 @@ char* selectQuery(char tableName[] , int numberOfColumns , char **columns)
 /*
 this is function fot generating update query .
 */
-char* updateQuery(char tableName[] , int numberOfColumns , char **columns , char **values , char keyColumn[] , char keyValue[])
+void updateQuery(char sql[] , char tableName[] , int numberOfColumns , char columns[][20] , char values[][20] , char keyColumn[] , char keyValue[])
 {
-	char sql[500]= "update " ;
+	strcpy(sql, "update ") ;
 	strcat(sql,tableName);
 	strcat(sql," set ");
 	for (int i = 0; i <numberOfColumns; i++) 
@@ -115,14 +115,13 @@ char* updateQuery(char tableName[] , int numberOfColumns , char **columns , char
 /*
 this is function for generating delete query string .
 */
-char* deleteQuery(char tableName[] , char keyColumn[] , char keyValue)
+void deleteQuery(char sql[] , char tableName[] , char keyColumn[] , char keyValue[])
 {
-	char sql[100]= "delete from ";
+	strcpy(sql, "delete from ");
 	strcat(sql,tableName);
 	strcat(sql," where ");
 	strcat(sql,keyColumn);
-	strcat(sql,"=");
+	strcat(sql," = ");
 	strcat(sql,keyValue);
 
-	return sql;
 }
