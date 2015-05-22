@@ -1,3 +1,11 @@
+#ifndef _QUERY_GEN_H
+#define _QUERY_GEN_H 
+#endif
+
+#ifndef _STDIO_H
+#include <stdio.h>
+#endif
+
 /*
 this is function for generating a query for making a table .
 */
