@@ -11,7 +11,7 @@ int connectToDb()
 	hasError = open_db(db_name);
 	if (! hasError )
 	{
-		printf("can not connect to database : %s\n",errorMessage);
+		printf("%scan not connect to database : %s\n%s",RED,errorMessage,RESET);
 		sqlite3_free(errorMessage);
 		return 0 ;
 	}
@@ -46,7 +46,9 @@ void mainMenu()
 					scanf(" %s",values[i]);
 				}
 				insertQuery(sql , tableName , count , columns , values ) ;
-				query(sql , simpleCallback) ;
+				int success =query(sql , simpleCallback) ;
+				if( ! success) 
+					printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 
 			}
 			break;
@@ -72,7 +74,9 @@ void mainMenu()
 				scanf(" %s",keyValue);
 
 				updateQuery(sql , tableName , count , columns , values , keyColumn , keyValue) ;
-				query(sql , simpleCallback) ;
+				int success = query(sql , simpleCallback) ;
+				if( ! success) 
+					printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 			}
 			break;
 			case 4:
@@ -86,7 +90,9 @@ void mainMenu()
 				printf("enter key value :");
 				scanf(" %s",keyValue);
 				deleteQuery(sql , tableName , keyColumn , keyValue) ;
-				query(sql , simpleCallback);
+				int success = query(sql , simpleCallback);
+				if( ! success) 
+					printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 			}
 			break;
 			case 5:
@@ -134,10 +140,8 @@ void innerMenu()
 				}
 				tableQueryGen(sql ,tableName , count , column , columnType , isNull );
 				int success = query(sql , simpleCallback);
-				if (! success ) 
-					printf("%s\n",errorMessage);
-				else 
-					printf("operation done successfully .\n");
+				if( ! success) 
+					printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 
 			}	
 			break ;
@@ -145,7 +149,9 @@ void innerMenu()
 			{
 				char sql[100] ;
 			       	listTablesQuery(sql) ; 
-				query(sql , simpleCallback) ; 
+				int success = query(sql , simpleCallback) ; 
+				if( ! success) 
+					printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 			}
 			break;
 			case 3:
@@ -154,7 +160,9 @@ void innerMenu()
 				printf("Enter the table name : ");
 				scanf("%s",tableName);
 				tableInfoQuery(sql ,tableName);
-				query(sql , simpleCallback);
+				int success = query(sql , simpleCallback);
+				if( ! success) 
+					printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 			}
 
 			break;
