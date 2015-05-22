@@ -1,3 +1,18 @@
+#ifndef _STDIO_h
+#include <stdio.h>
+#endif
+
+#ifndef _QUERY_GEN_H
+#include <query_gen.h>
+#endif
+
+#ifndef _DB_MANAGER_H
+#include <db_manager.h>
+#endif
+
+#ifndef _SHARED_DATA_H
+#include <shared_data.h>
+#endif
 void innerMenu();
 /*
 this is function for showing interface for connecting to database .
