@@ -1,3 +1,7 @@
+#ifndef _SHARED_DATA_H
+#define _SHARED_DATA_H
+#endif
+
 #define CLEAR_SCREEN "\033[2J"
 // change terminal color 
 #define RED "\033[31m"
