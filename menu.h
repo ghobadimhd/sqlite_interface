@@ -111,7 +111,9 @@ void mainMenu()
 					scanf("	%s",columnsName[i]);
 				}
 				selectQuery(sql , tableName , count , columnsName);
+				printf("%s\n",GREEN);
 				int success = query(sql , simpleCallback );
+				printf("%s\n",RESET);
 				if( ! success) 
 					printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 			}
