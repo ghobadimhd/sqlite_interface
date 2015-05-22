@@ -1,3 +1,10 @@
+#ifndef _DB_MANAGER_H
+#define _DB_MANAGER_H
+#endif
+
+#ifndef _STDIO_H
+#include <stdio.h>
+#endif
 #define callbackFunction int (*callback)(void*,  int,  char**,   char**  )
 sqlite3 *db ;//database object
 char *errorMessage ; // error message returned by sqlite 
