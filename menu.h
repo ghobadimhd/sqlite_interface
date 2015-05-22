@@ -96,7 +96,25 @@ void mainMenu()
 			}
 			break;
 			case 5:
+			{
 				//select();
+				char sql[500] , tableName[20] , columnsName[10][20] ;
+				int count = 0;
+				
+				printf("enter table name : ");
+				scanf("%s",&tableName);
+				printf("how many column of table you want to see (enter 0 for all columns) : ");
+				scanf(" %d",&count);
+				for (int i = 0; i <count; i++) 
+				{
+					printf("enter column name #%d : ",i);
+					scanf("	%s",columnsName[i]);
+				}
+				selectQuery(sql , tableName , count , columnsName);
+				int success = query(sql , simpleCallback );
+				if( ! success) 
+					printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
+			}
 			break;
 			default:
 			break ; 			
