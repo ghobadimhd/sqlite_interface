@@ -51,3 +51,18 @@ int query(char *sql , callbackFunction)
 	 else
 		 return 1 ;
 }
+/*
+this is callback function for sqlite3_exec that print query in linear way .
+*/
+static int linearPrint(void *data, int argc, char **argv, char **azColName)
+{
+	int i;
+	for(i=0; i<argc; i++)
+	{
+		printf("\033[32m"); // change print color to green
+		printf("%s\t", argv[i] ? argv[i] : "NULL");
+		printf("\033[0m");//reset print color 
+	}
+	printf("\n");
+	return 0;
+}
