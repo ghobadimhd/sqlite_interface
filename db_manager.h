@@ -59,8 +59,16 @@ static int linearPrint(void *data, int argc, char **argv, char **azColName)
 	int i;
 	for(i=0; i<argc; i++)
 	{
+		printf("\033[34m"); // change print color to green
+		printf("%s\t", azColName[i]); // print column name 
+		printf("\033[0m");//reset print color 
+
+	}
+	printf("\n");
+	for(i=0; i<argc; i++)
+	{
 		printf("\033[32m"); // change print color to green
-		printf("%s\t", argv[i] ? argv[i] : "NULL");
+		printf("%s\t", argv[i] ? argv[i] : "NULL");// print value of columns
 		printf("\033[0m");//reset print color 
 	}
 	printf("\n");
