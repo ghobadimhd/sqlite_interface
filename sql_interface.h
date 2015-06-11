@@ -35,4 +35,26 @@ void insert_dialog(char sql[])
 	insertQuery(sql , tableName , count , columns , values ) ;
 }
 
+void update_dialog(char sql[])
+{
+	char tableName[20] , columns[10][20] , values[10][20] , keyColumn[20] , keyValue[20] ;
+	int count ;
+	printf("Enter table name :");
+	scanf("%s",tableName);
+	printf("how many column you want to update ? :");
+	scanf("	%d",&count);
+	for (int i = 0; i <count; i++) 
+	{
+		printf("enter column name :");
+					scanf(" %s",columns[i]);
+			printf("enter new value for %s :",columns[i]);
+			scanf(" %s",values[i]);
+		}
+		printf("enter key column name :");
+		scanf(" %s",keyColumn);
+		printf("enter key value :");
+		scanf(" %s",keyValue);
+		updateQuery(sql , tableName , count , columns , values , keyColumn , keyValue) ;
+
+}
 
