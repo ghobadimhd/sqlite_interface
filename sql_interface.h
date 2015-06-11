@@ -69,3 +69,20 @@ void delete_dialog(char sql[])
 	scanf(" %s",keyValue);
 	deleteQuery(sql , tableName , keyColumn , keyValue) ;
 }
+
+void select_dialog(char sql[])
+{
+	char sql[500] , tableName[20] , columnsName[10][20] ;
+	int count = 0;
+
+	printf("enter table name : ");
+	scanf("%s",&tableName);
+	printf("how many column of table you want to see (enter 0 for all columns) : ");
+	scanf(" %d",&count);
+	for (int i = 0; i <count; i++) 
+	{
+		printf("enter column name #%d : ",i);
+		scanf("	%s",columnsName[i]);
+	}
+	selectQuery(sql , tableName , count , columnsName);
+}
