@@ -6,6 +6,10 @@
 #include <query_gen.h>
 #endif
 
+#ifndef _SQL_INTERFACE_H
+#include <sql_interface.h>
+#endif
+
 #ifndef _DB_MANAGER_H
 #include <db_manager.h>
 #endif
@@ -47,20 +51,8 @@ void mainMenu()
 			case 2:
 			{
 				// insert query
-				char tableName[20] , columns[10][20] , values[10][20] , sql[500] ;
-				int count ;
-				printf("Enter table name :");
-				scanf("%s",tableName);
-				printf("how many column your record has ? :");
-				scanf("	%d",&count);
-				for (int i = 0; i <count; i++) 
-				{
-					printf("enter column name :");
-					scanf(" %s",columns[i]);
-					printf("enter value for %s :",columns[i]);
-					scanf(" %s",values[i]);
-				}
-				insertQuery(sql , tableName , count , columns , values ) ;
+				char sql[500] ;
+				insert_dialog(sql);
 				int success =query(sql , simpleCallback) ;
 				if( ! success) 
 					printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
