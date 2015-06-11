@@ -58,3 +58,14 @@ void update_dialog(char sql[])
 
 }
 
+void delete_dialog(char sql[])
+{
+	char tableName[20] , keyColumn[20] , keyValue[20] , sql[500] ;
+	printf("Enter table name :");
+	scanf("%s",tableName);
+	printf("enter key column name :");
+	scanf(" %s",keyColumn);
+	printf("enter key value :");
+	scanf(" %s",keyValue);
+	deleteQuery(sql , tableName , keyColumn , keyValue) ;
+}
