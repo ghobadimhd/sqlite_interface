@@ -110,10 +110,13 @@ void createTable_diolog(char sql[])
 
 }
 
-void tableInfo_dialog(char sql[])
+void tableInfo_dialog()
 {
-	char tableName[20] ; 
+	char tableName[20] , sql[500] ; 
 	printf("Enter the table name : ");
 	scanf("%s",tableName);
 	tableInfoQuery(sql ,tableName);
+	int success = query(sql , simpleCallback);
+	if( ! success) 
+		printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 }
