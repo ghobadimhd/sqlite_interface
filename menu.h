@@ -55,7 +55,7 @@ void mainMenu()
 			case 3:
 			{
 				// update query 	
-				update_diolog();
+				update_dialog();
 			}
 			break;
 			case 4:
