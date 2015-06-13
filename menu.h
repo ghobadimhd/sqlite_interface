@@ -65,40 +65,13 @@ void mainMenu()
 			case 4:
 			{
 				// delete query 	
-				char tableName[20] , keyColumn[20] , keyValue[20] , sql[500] ;
-				printf("Enter table name :");
-				scanf("%s",tableName);
-				printf("enter key column name :");
-				scanf(" %s",keyColumn);
-				printf("enter key value :");
-				scanf(" %s",keyValue);
-				deleteQuery(sql , tableName , keyColumn , keyValue) ;
-				int success = query(sql , simpleCallback);
-				if( ! success) 
-					printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
+				delete_dialog()
 			}
 			break;
 			case 5:
 			{
 				//select();
-				char sql[500] , tableName[20] , columnsName[10][20] ;
-				int count = 0;
-				
-				printf("enter table name : ");
-				scanf("%s",&tableName);
-				printf("how many column of table you want to see (enter 0 for all columns) : ");
-				scanf(" %d",&count);
-				for (int i = 0; i <count; i++) 
-				{
-					printf("enter column name #%d : ",i);
-					scanf("	%s",columnsName[i]);
-				}
-				selectQuery(sql , tableName , count , columnsName);
-				printf("%s\n",GREEN);
-				int success = query(sql , linearPrint);
-				printf("%s\n",RESET);
-				if( ! success) 
-					printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
+				select_dialog()
 			}
 			break;
 			default:
