@@ -2,10 +2,6 @@
 #include <stdio.h>
 #endif
 
-#ifndef _QUERY_GEN_H
-#include <query_gen.h>
-#endif
-
 #ifndef _SQL_INTERFACE_H
 #include <sql_interface.h>
 #endif

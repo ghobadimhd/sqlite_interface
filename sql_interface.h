@@ -14,6 +14,10 @@ describtion : multiple function that implement interface for query_gen.h .
 #include <stdio.h>
 #endif
 
+#ifndef _QUERY_GEN_H
+#include <query_gen.h>
+#endif
+
 /*
 this is function that implement interface for insert query .
 */
