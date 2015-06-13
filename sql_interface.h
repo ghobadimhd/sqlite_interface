@@ -109,3 +109,11 @@ void createTable_diolog(char sql[])
 	tableQueryGen(sql ,tableName , count , column , columnType , isNull );
 
 }
+
+void tableInfo_dialog(char sql[])
+{
+	char tableName[20] ; 
+	printf("Enter the table name : ");
+	scanf("%s",tableName);
+	tableInfoQuery(sql ,tableName);
+}
