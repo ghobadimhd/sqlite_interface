@@ -65,13 +65,13 @@ void mainMenu()
 			case 4:
 			{
 				// delete query 	
-				delete_dialog()
+				delete_dialog();
 			}
 			break;
 			case 5:
 			{
 				//select();
-				select_dialog()
+				select_dialog();
 			}
 			break;
 			default:
@@ -97,48 +97,18 @@ void innerMenu()
 		{
 			case 1 :  
 			{		
-				char sql[500]="" ,  tableName[20] , column[10][20] , columnType[10][20]  , isNullAnswer = 0;
-				int count , isNull[10] ;
-				printf("Please enter table name :");
-				scanf("%s",tableName);
-				printf("How many column your table has(max is 10)?:");
-				scanf("%d",&count);
-				for (int i = 0; i <count; i++) 
-				{
-					printf("enter name of column #%d:",i);
-					scanf(" %s",column[i]);
-					printf("enter type of %s :",column[i]);
-					scanf(" %s",columnType[i]);
-					printf("is it nullable column?");
-					scanf(" %c",&isNullAnswer); // fix me : segmentation failed 
-					isNull[i] = isNullAnswer == 'y' ? 1 : 0; 
-					printf("\n");
-				}
-				tableQueryGen(sql ,tableName , count , column , columnType , isNull );
-				int success = query(sql , simpleCallback);
-				if( ! success) 
-					printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
+				createTable_diolog();
 
 			}	
 			break ;
 			case 2:
 			{
-				char sql[100] ;
-			       	listTablesQuery(sql) ; 
-				int success = query(sql , simpleCallback) ; 
-				if( ! success) 
-					printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
+				tableList_dialog();
 			}
 			break;
 			case 3:
 			{
-				char sql[100]  , tableName[20] ; 
-				printf("Enter the table name : ");
-				scanf("%s",tableName);
-				tableInfoQuery(sql ,tableName);
-				int success = query(sql , simpleCallback);
-				if( ! success) 
-					printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
+				tableList_dialog();
 			}
 
 			break;
