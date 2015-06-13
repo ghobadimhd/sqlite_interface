@@ -17,7 +17,7 @@ describtion : multiple function that implement interface for query_gen.h .
 /*
 this is function that implement interface for insert query .
 */
-void insert_dialog(char sql[])	
+void insert_dialog()	
 {
 	char tableName[20] , columns[10][20] , values[10][20] , sql[500];
 	int count ;
@@ -38,7 +38,7 @@ void insert_dialog(char sql[])
 		printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 }
 
-void update_dialog(char sql[])
+void update_dialog()
 {
 	char tableName[20] , columns[10][20] , values[10][20] , keyColumn[20] , keyValue[20]  , sql[500] ;
 	int count ;
@@ -64,7 +64,7 @@ void update_dialog(char sql[])
 
 }
 
-void delete_dialog(char sql[])
+void delete_dialog()
 {
 	char tableName[20] , keyColumn[20] , keyValue[20] , sql[500] ;
 	printf("Enter table name :");
@@ -79,7 +79,7 @@ void delete_dialog(char sql[])
 		printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 }
 
-void select_dialog(char sql[])
+void select_dialog()
 {
 	char sql[500] , tableName[20] , columnsName[10][20] ;
 	int count = 0;
@@ -99,7 +99,7 @@ void select_dialog(char sql[])
 		printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 }
 
-void createTable_diolog(char sql[])
+void createTable_diolog()
 {
 	char tableName[20] , column[10][20] , columnType[10][20]  , isNullAnswer = 0 , sql[500]="";
 	int count , isNull[10] ;
