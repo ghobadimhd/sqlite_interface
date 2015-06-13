@@ -19,7 +19,7 @@ this is function that implement interface for insert query .
 */
 void insert_dialog(char sql[])	
 {
-	char tableName[20] , columns[10][20] , values[10][20] ;
+	char tableName[20] , columns[10][20] , values[10][20] , sql[500];
 	int count ;
 	printf("Enter table name :");
 	scanf("%s",tableName);
@@ -33,11 +33,14 @@ void insert_dialog(char sql[])
 		scanf(" %s",values[i]);
 	}
 	insertQuery(sql , tableName , count , columns , values ) ;
+	int success = query(sql , simpleCallback);
+	if( ! success) 
+		printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 }
 
 void update_dialog(char sql[])
 {
-	char tableName[20] , columns[10][20] , values[10][20] , keyColumn[20] , keyValue[20] ;
+	char tableName[20] , columns[10][20] , values[10][20] , keyColumn[20] , keyValue[20]  , sql[500] ;
 	int count ;
 	printf("Enter table name :");
 	scanf("%s",tableName);
@@ -46,15 +49,18 @@ void update_dialog(char sql[])
 	for (int i = 0; i <count; i++) 
 	{
 		printf("enter column name :");
-					scanf(" %s",columns[i]);
-			printf("enter new value for %s :",columns[i]);
-			scanf(" %s",values[i]);
-		}
-		printf("enter key column name :");
-		scanf(" %s",keyColumn);
-		printf("enter key value :");
-		scanf(" %s",keyValue);
-		updateQuery(sql , tableName , count , columns , values , keyColumn , keyValue) ;
+		scanf(" %s",columns[i]);
+		printf("enter new value for %s :",columns[i]);
+		scanf(" %s",values[i]);
+	}
+	printf("enter key column name :");
+	scanf(" %s",keyColumn);
+	printf("enter key value :");
+	scanf(" %s",keyValue);
+	updateQuery(sql , tableName , count , columns , values , keyColumn , keyValue) ;
+	int success = query(sql , simpleCallback);
+	if( ! success) 
+		printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 
 }
 
@@ -68,6 +74,9 @@ void delete_dialog(char sql[])
 	printf("enter key value :");
 	scanf(" %s",keyValue);
 	deleteQuery(sql , tableName , keyColumn , keyValue) ;
+	int success = query(sql , simpleCallback);
+	if( ! success) 
+		printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 }
 
 void select_dialog(char sql[])
@@ -85,6 +94,9 @@ void select_dialog(char sql[])
 		scanf("	%s",columnsName[i]);
 	}
 	selectQuery(sql , tableName , count , columnsName);
+	int success = query(sql , simpleCallback);
+	if( ! success) 
+		printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 }
 
 void createTable_diolog(char sql[])
