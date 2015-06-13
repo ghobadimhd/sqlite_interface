@@ -89,7 +89,7 @@ void select_dialog(char sql[])
 
 void createTable_diolog(char sql[])
 {
-	char tableName[20] , column[10][20] , columnType[10][20]  , isNullAnswer = 0;
+	char tableName[20] , column[10][20] , columnType[10][20]  , isNullAnswer = 0 , sql[500]="";
 	int count , isNull[10] ;
 	printf("Please enter table name :");
 	scanf("%s",tableName);
@@ -107,6 +107,9 @@ void createTable_diolog(char sql[])
 		printf("\n");
 	}
 	tableQueryGen(sql ,tableName , count , column , columnType , isNull );
+	int success = query(sql , simpleCallback);
+	if( ! success) 
+		printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
 
 }
 
