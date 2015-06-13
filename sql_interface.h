@@ -86,3 +86,26 @@ void select_dialog(char sql[])
 	}
 	selectQuery(sql , tableName , count , columnsName);
 }
+
+void createTable_diolog(char sql[])
+{
+	char tableName[20] , column[10][20] , columnType[10][20]  , isNullAnswer = 0;
+	int count , isNull[10] ;
+	printf("Please enter table name :");
+	scanf("%s",tableName);
+	printf("How many column your table has(max is 10)?:");
+	scanf("%d",&count);
+	for (int i = 0; i <count; i++) 
+	{
+		printf("enter name of column #%d:",i);
+		scanf(" %s",column[i]);
+		printf("enter type of %s :",column[i]);
+		scanf(" %s",columnType[i]);
+		printf("is it nullable column?");
+		scanf(" %c",&isNullAnswer); // fix me : segmentation failed 
+		isNull[i] = isNullAnswer == 'y' ? 1 : 0; 
+		printf("\n");
+	}
+	tableQueryGen(sql ,tableName , count , column , columnType , isNull );
+
+}
