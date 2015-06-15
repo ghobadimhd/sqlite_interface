@@ -25,7 +25,7 @@ void messageGenerator(char logMessage[],char message[])
 	time_t rawTime; 
 	time(&rawTime);
 	localTime = localtime(&rawTime);
-	strftime(timeString ,22, "[%Y-%m-%d %H:%M:%S]",localTime);
+	strftime(timeString ,22, "%Y-%m-%d %H:%M:%S",localTime);
 	sprintf(logMessage , "[%s] : %s", timeString , message);
 	printf("%s\n",logMessage);
 }
