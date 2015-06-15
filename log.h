@@ -8,8 +8,15 @@ this is function generating log message .
 #endif
 
 #ifndef _TIME_H
- #include <time.h>
+#include <time.h>
 #endif
+
+#ifndef _FILE_H
+#include <file.h>
+#endif
+
+#define LOGTOSTDOUT 0
+#define LOGTOFILE 1
 
 void messageGenerator(char logMessage[],char message[])
 {
@@ -21,4 +28,25 @@ void messageGenerator(char logMessage[],char message[])
 	strftime(timeString ,22, "[%Y-%m-%d %H:%M:%S]",localTime);
 	sprintf(logMessage , "[%s] : %s", timeString , message);
 	printf("%s\n",logMessage);
+}
+
+/*
+this is function loging messages .
+*/
+void logger(char message[] , int destination , char data[])
+{
+	char log[500]="" ;
+	messageGenerator(log , message);
+	switch(destination)
+	{
+		case 0:
+			printf("%s\n",log);
+		break;
+		case 1:
+			stringWriter(log, data);	
+		break;
+		default:
+			printf("logging failed\n");
+	}
+	
 }
