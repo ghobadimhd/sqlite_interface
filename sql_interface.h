@@ -18,6 +18,10 @@ describtion : multiple function that implement interface for query_gen.h .
 #include <query_gen.h>
 #endif
 
+#ifndef _LOG_H
+#include <log.h>
+#endif
+
 /*
 this is function that implement interface for insert query .
 */
@@ -38,8 +42,13 @@ void insert_dialog()
 	}
 	insertQuery(sql , tableName , count , columns , values ) ;
 	int success = query(sql , simpleCallback);
-	if( ! success) 
-		printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
+	if( ! success)
+	{	
+		char message[500]="";
+		sprintf(message, "Operation failed : %s\n",errorMessage);
+		printf("%s%s%s\n",RED,message,RESET);
+		logger(message ,LOGTOFILE , "error.log");
+	}
 }
 
 void update_dialog()
