@@ -148,8 +148,13 @@ void createTable_diolog()
 	}
 	tableQueryGen(sql ,tableName , count , column , columnType , isNull );
 	int success = query(sql , simpleCallback);
-	if( ! success) 
-		printf("%sOperation failed : %s\n%s", RED ,errorMessage, RESET);
+	if( ! success)
+	{	
+		char message[500]="";
+		sprintf(message, "Operation failed : %s\n",errorMessage);
+		printf("%s%s%s\n",RED,message,RESET);
+		logger(message ,LOGTOFILE , "error.log");
+	}
 
 }
 
