@@ -40,8 +40,8 @@ void insert_dialog()
 		printf("enter value for %s :",columns[i]);
 		scanf(" %s",values[i]);
 	}
-	insertQuery(sql , tableName , count , columns , values ) ;
-	int success = query(sql , simpleCallback);
+	insertQuery(sql , tableName , count , columns , values ) ;// generating query string 
+	int success = query(sql , simpleCallback);// executing query string
 	if( ! success)
 	{	
 		char message[500]="";
@@ -50,7 +50,9 @@ void insert_dialog()
 		logger(message ,LOGTOFILE , "error.log");
 	}
 }
-
+//
+//this function show dialog for update query 
+//
 void update_dialog()
 {
 	char tableName[20] , columns[10][20] , values[10][20] , keyColumn[20] , keyValue[20]  , sql[500] ;
@@ -70,8 +72,8 @@ void update_dialog()
 	scanf(" %s",keyColumn);
 	printf("enter key value :");
 	scanf(" %s",keyValue);
-	updateQuery(sql , tableName , count , columns , values , keyColumn , keyValue) ;
-	int success = query(sql , simpleCallback);
+	updateQuery(sql , tableName , count , columns , values , keyColumn , keyValue) ;// generating query string
+	int success = query(sql , simpleCallback);// executing query 
 	if( ! success)
 	{	
 		char message[500]="";
@@ -81,7 +83,9 @@ void update_dialog()
 	}
 
 }
-
+//
+//this function show dialog for delete query
+//
 void delete_dialog()
 {
 	char tableName[20] , keyColumn[20] , keyValue[20] , sql[500] ;
@@ -91,8 +95,8 @@ void delete_dialog()
 	scanf(" %s",keyColumn);
 	printf("enter key value :");
 	scanf(" %s",keyValue);
-	deleteQuery(sql , tableName , keyColumn , keyValue) ;
-	int success = query(sql , simpleCallback);
+	deleteQuery(sql , tableName , keyColumn , keyValue) ;// generating query string
+	int success = query(sql , simpleCallback);// executing query 
 	if( ! success)
 	{	
 		char message[500]="";
@@ -101,7 +105,9 @@ void delete_dialog()
 		logger(message ,LOGTOFILE , "error.log");
 	}
 }
-
+//
+//this function show dialog for select query 
+//
 void select_dialog()
 {
 	char sql[500] , tableName[20] , columnsName[10][20] ;
@@ -116,8 +122,8 @@ void select_dialog()
 		printf("enter column name #%d : ",i);
 		scanf("	%s",columnsName[i]);
 	}
-	selectQuery(sql , tableName , count , columnsName);
-	int success = query(sql , simpleCallback);
+	selectQuery(sql , tableName , count , columnsName);// generating query string
+	int success = query(sql , simpleCallback);// executing query
 	if( ! success)
 	{	
 		char message[500]="";
@@ -126,7 +132,9 @@ void select_dialog()
 		logger(message ,LOGTOFILE , "error.log");
 	}
 }
-
+//
+//this function is show dialog for creating table
+//
 void createTable_diolog()
 {
 	char tableName[20] , column[10][20] , columnType[10][20]  , isNullAnswer = 0 , sql[500]="";
@@ -142,12 +150,12 @@ void createTable_diolog()
 		printf("enter type of %s :",column[i]);
 		scanf(" %s",columnType[i]);
 		printf("is it nullable column?");
-		scanf(" %c",&isNullAnswer); // fix me : segmentation failed 
+		scanf(" %c",&isNullAnswer);
 		isNull[i] = isNullAnswer == 'y' ? 1 : 0; 
 		printf("\n");
 	}
-	tableQueryGen(sql ,tableName , count , column , columnType , isNull );
-	int success = query(sql , simpleCallback);
+	tableQueryGen(sql ,tableName , count , column , columnType , isNull );//generating query string 
+	int success = query(sql , simpleCallback); // executing query 
 	if( ! success)
 	{	
 		char message[500]="";
@@ -157,14 +165,16 @@ void createTable_diolog()
 	}
 
 }
-
+//
+//this function show dialog for listing detail of a table 
+//
 void tableInfo_dialog()
 {
 	char tableName[20] , sql[500] ; 
 	printf("Enter the table name : ");
 	scanf("%s",tableName);
-	tableInfoQuery(sql ,tableName);
-	int success = query(sql , simpleCallback);
+	tableInfoQuery(sql ,tableName);// generating query string
+	int success = query(sql , simpleCallback);// executing query
 	if( ! success)
 	{	
 		char message[500]="";
@@ -173,12 +183,14 @@ void tableInfo_dialog()
 		logger(message ,LOGTOFILE , "error.log");
 	}
 }
-
+//
+//this function show dialog for listing existing table
+//
 void tableList_dialog()
 {
 	char sql[100] ;
-  	listTablesQuery(sql) ; 
-	int success = query(sql , simpleCallback) ; 
+  	listTablesQuery(sql) ; // generating query string 
+	int success = query(sql , simpleCallback) ; // executing query
 	if( ! success)
 	{	
 		char message[500]="";
