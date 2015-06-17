@@ -1,6 +1,3 @@
-/*
-this is function generating log message .
-*/
 #define _LOG_H
 
 #ifndef _STDIO_H
@@ -18,6 +15,9 @@ this is function generating log message .
 #define LOGTOSTDOUT 0
 #define LOGTOFILE 1
 
+/*
+this is function generating log message .
+*/
 void messageGenerator(char logMessage[],char message[])
 {
 	char timeString[20]="";
@@ -25,7 +25,7 @@ void messageGenerator(char logMessage[],char message[])
 	time_t rawTime; 
 	time(&rawTime);
 	localTime = localtime(&rawTime);
-	strftime(timeString ,22, "%Y-%m-%d %H:%M:%S",localTime);
+	strftime(timeString ,22, "%Y-%m-%d %H:%M:%S",localTime);// time string : year-month-day hour:minute:secend
 	sprintf(logMessage , "[%s] : %s", timeString , message);
 }
 
@@ -35,14 +35,14 @@ this is function loging messages .
 void logger(char message[] , int destination , char data[])
 {
 	char log[500]="" ;
-	messageGenerator(log , message);
+	messageGenerator(log , message);//generating messages 
 	switch(destination)
 	{
 		case 0:
-			printf("%s\n",log);
+			printf("%s\n",log);// print message to stdout
 		break;
 		case 1:
-			stringWriter(log, data);	
+			stringWriter(log, data);// save message to file 
 		break;
 		default:
 			printf("logging failed\n");
