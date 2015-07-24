@@ -18,7 +18,7 @@ int open_db(char *db_name)
 	hasError = sqlite3_open(db_name , &db);
 	if(hasError)
 	{
-		errorMessage = sqlite3_errmsg(db);
+		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
 		return 0 ;
 	}
 	else 
