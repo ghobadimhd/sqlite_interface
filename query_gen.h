@@ -28,7 +28,6 @@ void tableQueryGen(char sql[] , char tableName[],int numberOfColumns , char colu
 		
 	}
 	strcat(sql , " );");
-	return sql ;
 
 }
 /*
@@ -37,7 +36,6 @@ this is function for creating query for listing existence tables .
 void listTablesQuery(char sql[])
 {
 	strcpy(sql, "select * from sqlite_master where type = 'table'");
-	return sql ;
 }
 /*
 this is function for showing table info .
@@ -48,7 +46,6 @@ void tableInfoQuery(char sql[] , char *tableName)
 	strcat(sql , tableName);
 	strcat (sql , ");");
 	
-	return sql;
 }
 /*
 this is function for generating sql query for inserting data in table .
@@ -72,7 +69,6 @@ void insertQuery(char sql[] , char tableName[] ,int numberOfColumns ,char column
 			strcat(sql,",");
 	}
 	strcat(sql,")");
-	return sql;
 }
 /*
 this is function for generating select sql query .
@@ -95,7 +91,6 @@ void selectQuery(char sql[] , char tableName[] , int numberOfColumns , char colu
 	
 	strcat(sql," from ");
 	strcat(sql,tableName);
-	return sql ;
 }
 /*
 this is function fot generating update query .
@@ -118,7 +113,6 @@ void updateQuery(char sql[] , char tableName[] , int numberOfColumns , char colu
 	strcat(sql,"=");
 	strcat(sql,keyValue);
 
-	return sql;
 }
 /*
 this is function for generating delete query string .
@@ -131,5 +125,4 @@ void deleteQuery(char sql[] , char tableName[] , char keyColumn[] , char keyValu
 	strcat(sql,keyColumn);
 	strcat(sql," = ");
 	strcat(sql,keyValue);
-
 }
