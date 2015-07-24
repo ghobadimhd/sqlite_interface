@@ -12,21 +12,29 @@
 #include <file.h>
 #endif
 
+#ifndef _FILE_H
+#include <unistd.h>
+#endif
+
+
+
 #define LOGTOSTDOUT 0
 #define LOGTOFILE 1
-
+#define HOSTNAMELENGH 50
+#define PROCESSNAME "sqlite_interface"
 /*
 this is function generating log message .
 */
 void messageGenerator(char logMessage[],char message[])
 {
-	char timeString[20]="";
+	char timeString[20]="" , hostname[HOSTNAMELENGH] ;
+	gethostname(hostname,HOSTNAMELENGH);
 	struct tm *localTime;
 	time_t rawTime; 
 	time(&rawTime);
 	localTime = localtime(&rawTime);
-	strftime(timeString ,22, "%Y-%m-%d %H:%M:%S",localTime);// time string : year-month-day hour:minute:secend
-	sprintf(logMessage , "[%s] : %s", timeString , message);
+	strftime(timeString ,22, "%b %d %H:%M:%S",localTime);// time string : year-month-day hour:minute:secend
+	sprintf(logMessage , "%s %s %s[%d] : %s", timeString , hostname, PROCESSNAME, (long)getpid() , message);
 }
 
 /*
